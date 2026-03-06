@@ -362,11 +362,23 @@
     /* ── SERVICES ── */
     .services { background: var(--dark); }
 
+    .services-slider { position: relative; }
+
     .services-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+      --services-gap: 1.5rem;
+      --services-visible: 3;
+      display: flex;
+      gap: var(--services-gap);
+      align-items: flex-start;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 0.2rem;
+      touch-action: pan-x;
     }
+    .services-list::-webkit-scrollbar { display: none; }
 
     .service-card {
       background: var(--dark2);
@@ -376,8 +388,39 @@
       transition: border-color 0.25s;
       display: flex;
       flex-direction: column;
+      flex: 0 0 calc((100% - (var(--services-gap) * (var(--services-visible) - 1))) / var(--services-visible));
+      min-width: 0;
+      scroll-snap-align: start;
     }
     .service-card:hover { border-color: rgba(201,148,26,0.3); }
+
+    .services-controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .services-nav {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,148,26,0.25);
+      background: rgba(201,148,26,0.1);
+      color: var(--gold);
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .services-nav:hover:not(:disabled) {
+      background: rgba(201,148,26,0.2);
+      border-color: var(--gold);
+    }
+    .services-nav:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
 
     .service-header {
       display: flex;
@@ -385,6 +428,7 @@
       gap: 1rem;
       padding: 2rem;
       flex: 1;
+      min-height: 300px;
     }
 
     .service-info { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
@@ -1080,7 +1124,6 @@
       box-shadow: 0 8px 28px rgba(0,0,0,0.5);
     }
 
-    .float-tg { background: #229ED9; }
     .float-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
 
     /* ── MOBILE NAV ── */
@@ -1119,7 +1162,7 @@
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .form-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
       .contacts-grid { grid-template-columns: 1fr; }
-      .services-list { grid-template-columns: 1fr; }
+      .services-list { --services-visible: 2; }
     }
 
     @media (max-width: 600px) {
@@ -1129,8 +1172,9 @@
       .footer-top { flex-direction: column; align-items: flex-start; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .footer-links { flex-wrap: wrap; }
-      .services-list { grid-template-columns: 1fr; }
-      .service-header { padding: 1.5rem; }
+      .services-list { --services-visible: 1; }
+      .services-controls { justify-content: center; }
+      .service-header { padding: 1.5rem; min-height: 260px; }
       .service-details-inner { padding: 0 1.5rem 1.5rem; }
     }
   </style>
@@ -1224,7 +1268,8 @@
   <h2 class="section-title">Наши <span>услуги и цены</span></h2>
   <p class="section-desc">Полный спектр стоматологических услуг по доступным ценам. Принимаем 24/7.</p>
 
-  <div class="services-list">
+  <div class="services-slider">
+    <div class="services-list" id="servicesList">
 
     <!-- 1. Виниры E-max -->
     <div class="service-card">
@@ -1494,6 +1539,11 @@
       </div>
     </div>
 
+    </div>
+    <div class="services-controls">
+      <button class="services-nav" id="servicesPrev" type="button" aria-label="Предыдущие услуги" onclick="slideServices(-1)">&#8592;</button>
+      <button class="services-nav" id="servicesNext" type="button" aria-label="Следующие услуги" onclick="slideServices(1)">&#8594;</button>
+    </div>
   </div>
 </section>
 
@@ -1782,9 +1832,6 @@
       <a href="#contacts">Контакты</a>
     </div>
     <div class="footer-socials">
-      <a href="https://t.me/smileavenue" target="_blank" class="social-btn" title="Telegram">
-        <svg viewBox="0 0 24 24" fill="#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-      </a>
       <a href="https://www.instagram.com/smile_avenue_uz/?hl=ru" target="_blank" class="social-btn" title="Instagram">
         <svg viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       </a>
@@ -1800,9 +1847,6 @@
   <a href="https://www.instagram.com/smile_avenue_uz/?hl=ru" target="_blank" class="float-btn float-ig" title="Instagram">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
   </a>
-  <a href="https://t.me/smileavenue" target="_blank" class="float-btn float-tg" title="Telegram">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-  </a>
 </div>
 
 <script>
@@ -1813,8 +1857,128 @@
   function toggleDetails(btn) {
     const card = btn.closest('.service-card');
     const details = card.querySelector('.service-details');
-    details.classList.toggle('open');
-    btn.textContent = details.classList.contains('open') ? 'Скрыть' : 'Подробнее';
+    const shouldOpen = !details.classList.contains('open');
+
+    document.querySelectorAll('#servicesList .service-details.open').forEach((item) => {
+      item.classList.remove('open');
+      const itemBtn = item.closest('.service-card')?.querySelector('.btn-details');
+      if (itemBtn) itemBtn.textContent = 'Подробнее';
+    });
+
+    if (shouldOpen) {
+      details.classList.add('open');
+      btn.textContent = 'Скрыть';
+    } else {
+      details.classList.remove('open');
+      btn.textContent = 'Подробнее';
+    }
+  }
+
+  const servicesList = document.getElementById('servicesList');
+  const servicesState = {
+    cloneCount: 0,
+    originalsCount: 0,
+    resizeTimer: null,
+    autoTimer: null
+  };
+
+  function getServicesStep() {
+    if (!servicesList) return 0;
+    const card = servicesList.querySelector('.service-card:not(.is-clone)') || servicesList.querySelector('.service-card');
+    if (!card) return 0;
+    const gap = parseFloat(getComputedStyle(servicesList).gap) || 0;
+    return card.getBoundingClientRect().width + gap;
+  }
+
+  function getServicesVisibleCount() {
+    if (window.matchMedia('(max-width: 600px)').matches) return 1;
+    if (window.matchMedia('(max-width: 900px)').matches) return 2;
+    return 3;
+  }
+
+  function createServiceClone(card) {
+    const clone = card.cloneNode(true);
+    clone.classList.add('is-clone');
+    clone.setAttribute('aria-hidden', 'true');
+    return clone;
+  }
+
+  function rebuildServicesLoop() {
+    if (!servicesList) return;
+
+    servicesList.querySelectorAll('.service-card.is-clone').forEach((el) => el.remove());
+    const originals = Array.from(servicesList.querySelectorAll('.service-card:not(.is-clone)'));
+    const originalsCount = originals.length;
+    if (!originalsCount) return;
+
+    const cloneCount = Math.min(getServicesVisibleCount(), originalsCount);
+    const headClones = originals.slice(0, cloneCount).map(createServiceClone);
+    const tailClones = originals.slice(-cloneCount).map(createServiceClone);
+
+    tailClones.reverse().forEach((clone) => servicesList.insertBefore(clone, servicesList.firstChild));
+    headClones.forEach((clone) => servicesList.appendChild(clone));
+
+    servicesState.cloneCount = cloneCount;
+    servicesState.originalsCount = originalsCount;
+
+    const step = getServicesStep();
+    if (!step) return;
+
+    servicesList.style.scrollBehavior = 'auto';
+    servicesList.scrollLeft = cloneCount * step;
+    servicesList.style.scrollBehavior = '';
+  }
+
+  function normalizeServicesLoop() {
+    if (!servicesList) return;
+    const step = getServicesStep();
+    if (!step || !servicesState.cloneCount || !servicesState.originalsCount) return;
+
+    const leftEdge = step * (servicesState.cloneCount - 0.5);
+    const rightEdge = step * (servicesState.cloneCount + servicesState.originalsCount - 0.5);
+
+    if (servicesList.scrollLeft < leftEdge) {
+      servicesList.style.scrollBehavior = 'auto';
+      servicesList.scrollLeft += servicesState.originalsCount * step;
+      servicesList.style.scrollBehavior = '';
+      return;
+    }
+
+    if (servicesList.scrollLeft > rightEdge) {
+      servicesList.style.scrollBehavior = 'auto';
+      servicesList.scrollLeft -= servicesState.originalsCount * step;
+      servicesList.style.scrollBehavior = '';
+    }
+  }
+
+  function slideServices(direction) {
+    if (!servicesList) return;
+    servicesList.scrollBy({ left: direction * getServicesStep(), behavior: 'smooth' });
+  }
+
+  function stopAutoServicesSlide() {
+    clearInterval(servicesState.autoTimer);
+    servicesState.autoTimer = null;
+  }
+
+  function startAutoServicesSlide() {
+    if (!servicesList || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    stopAutoServicesSlide();
+    servicesState.autoTimer = setInterval(() => slideServices(1), 3500);
+  }
+
+  if (servicesList) {
+    rebuildServicesLoop();
+    servicesList.addEventListener('scroll', normalizeServicesLoop, { passive: true });
+    window.addEventListener('resize', () => {
+      clearTimeout(servicesState.resizeTimer);
+      servicesState.resizeTimer = setTimeout(rebuildServicesLoop, 120);
+    });
+    servicesList.addEventListener('mouseenter', stopAutoServicesSlide);
+    servicesList.addEventListener('mouseleave', startAutoServicesSlide);
+    servicesList.addEventListener('touchstart', stopAutoServicesSlide, { passive: true });
+    servicesList.addEventListener('touchend', startAutoServicesSlide, { passive: true });
+    startAutoServicesSlide();
   }
 
   // Phone mask
