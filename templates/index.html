@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smile Avenue — Стоматология нового поколения</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9941A;
+      --gold-light: #E8B44A;
+      --gold-dark: #A07514;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark2: #1A1A1A;
+      --dark3: #222222;
+      --text: #F5F0E8;
+      --text-muted: #9A8E7A;
+      --red: #e05555;
+      --green: #34c759;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .hero-title, .section-title, .service-name, .cta-title {
+      font-family: 'Playfair Display', serif;
+    }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ── HEADER ── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,148,26,0.15);
+      padding: 0 5%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      text-decoration: none;
+    }
+    .logo-smile {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+    .logo-avenue {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+    .logo-sub {
+      font-size: 0.52rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.3em;
+    }
+
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--gold);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
+    .header-phone svg { flex-shrink: 0; }
+
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .burger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 5% 80px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 70% 50%, rgba(201,148,26,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,148,26,0.05) 0%, transparent 60%);
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .orb1 {
+      width: 500px; height: 500px;
+      background: rgba(201,148,26,0.12);
+      right: -100px; top: -100px;
+      animation: float 8s ease-in-out infinite;
+    }
+    .orb2 {
+      width: 300px; height: 300px;
+      background: rgba(201,148,26,0.07);
+      left: 10%; bottom: 10%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-content {
+      max-width: 640px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(201,148,26,0.12);
+      border: 1px solid rgba(201,148,26,0.3);
+      color: var(--gold-light);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.15);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: linear-gradient(135deg, var(--dark2), var(--dark3));
+      min-height: 300px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 0.9rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 0.03em;
+      transition: all 0.25s;
+      box-shadow: 0 4px 24px rgba(201,148,26,0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,148,26,0.45);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border: 1.5px solid rgba(201,148,26,0.5);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 0.03em;
+      transition: all 0.25s;
+    }
+    .btn-outline:hover {
+      background: rgba(201,148,26,0.08);
+      border-color: var(--gold);
+    }
+
+    .btn-sm {
+      font-size: 0.82rem;
+      padding: 0.65rem 1.4rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 90px 5%; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+    }
+    .section-title span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--dark); }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: border-color 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover { border-color: rgba(201,148,26,0.3); }
+
+    .service-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      flex: 1;
+    }
+
+    .service-info { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+
+    .service-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .service-short {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .service-pricing {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .price-old {
+      font-size: 1rem;
+      color: var(--red);
+      text-decoration: line-through;
+      font-weight: 600;
+      opacity: 0.7;
+    }
+
+    .price-new {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    .price-only {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .service-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .btn-details {
+      background: rgba(201,148,26,0.1);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid rgba(201,148,26,0.25);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .btn-details:hover {
+      background: rgba(201,148,26,0.2);
+      border-color: var(--gold);
+    }
+
+    /* Accordion details */
+    .service-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    .service-details.open {
+      max-height: 2000px;
+    }
+
+    .service-details-inner {
+      padding: 0 2rem 2rem;
+      border-top: 1px solid rgba(201,148,26,0.1);
+      padding-top: 2rem;
+    }
+
+    .service-details-inner p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .service-details-inner h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .service-details-inner ul {
+      list-style: none;
+      padding: 0;
+    }
+    .service-details-inner ul li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .service-details-inner ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .details-cta {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,148,26,0.1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .details-cta-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--black); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-services-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .about-services-list li {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      padding: 0.3rem 0 0.3rem 1.2rem;
+      position: relative;
+    }
+    .about-services-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .about-image {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.15);
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── WHY US ── */
+    .why { background: var(--dark); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+    }
+
+    .why-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: rgba(201,148,26,0.1);
+      border: 1px solid rgba(201,148,26,0.25);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    .why-text h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .why-text p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .why-visual { position: relative; }
+
+    .why-card-big {
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+    }
+
+    .why-card-big .big-num {
+      font-size: 4rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .why-card-big p {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      margin-top: 0.5rem;
+    }
+
+    .mini-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .mini-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.1);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .mini-card .mn {
+      font-size: 1.6rem;
+      font-weight: 800;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+    }
+    .mini-card .ml { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--black); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.1);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: border-color 0.25s;
+    }
+    .testimonial-card:hover { border-color: rgba(201,148,26,0.3); }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1rem;
+    }
+    .star { color: var(--gold); font-size: 0.9rem; }
+
+    .testimonial-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #000;
+    }
+
+    .author-name { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+    .author-date { font-size: 0.7rem; color: var(--text-muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,148,26,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .cta-title span {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cta-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FORM SECTION ── */
+    .form-section {
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,148,26,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-info h2 { margin-bottom: 1rem; }
+
+    .form-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .form-benefit {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .form-benefit-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .appointment-form {
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.18);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1.5px solid rgba(201,148,26,0.2);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      appearance: none;
+    }
+
+    .form-input::placeholder { color: rgba(154,142,122,0.5); }
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--gold);
+      background: rgba(201,148,26,0.05);
+    }
+
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9941A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .form-select option {
+      background: var(--dark2);
+      color: var(--text);
+    }
+
+    .form-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: all 0.25s;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 24px rgba(201,148,26,0.3);
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(201,148,26,0.5);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+    }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .success-msg .check { font-size: 3rem; margin-bottom: 1rem; }
+    .success-msg h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .success-msg p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ── CONTACTS ── */
+    .contacts { background: var(--dark); }
+
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
+      background: var(--dark2);
+      border: 1px solid rgba(201,148,26,0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: border-color 0.25s;
+    }
+    .contact-card:hover { border-color: rgba(201,148,26,0.3); }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(201,148,26,0.1);
+      border: 1px solid rgba(201,148,26,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-val {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+    a.contact-val:hover { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(201,148,26,0.1);
+      padding: 2.5rem 5%;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(201,148,26,0.1);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .social-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      border: 1px solid rgba(201,148,26,0.2);
+      background: rgba(201,148,26,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .social-btn:hover {
+      background: rgba(201,148,26,0.2);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .social-btn svg { width: 18px; height: 18px; }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-copy { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ── FLOATING CTA ── */
+    .float-cta {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      align-items: flex-end;
+    }
+
+    .float-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .float-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+    }
+
+    .float-tg { background: #229ED9; }
+    .float-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+
+    /* ── MOBILE NAV ── */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,148,26,0.15);
+      padding: 1.5rem 5%;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 99;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { display: none; }
+      .burger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-image { max-height: 350px; }
+      .hero-stats { gap: 1.5rem; }
+      .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contacts-grid { grid-template-columns: 1fr; }
+      .services-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 60px 5%; }
+      .hero { padding: 100px 5% 60px; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; }
+      .services-list { grid-template-columns: 1fr; }
+      .service-header { padding: 1.5rem; }
+      .service-details-inner { padding: 0 1.5rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-smile">SMILE</div>
+    <div class="logo-avenue">AVENUE</div>
+    <div class="logo-sub">DENTAL CLINIC</div>
+  </a>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#about">О клинике</a>
+    <a href="#why">Преимущества</a>
+    <a href="#reviews">Отзывы</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a href="tel:+998901234567" class="header-phone">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+    +998 90 123 45 67
+  </a>
+  <button class="burger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#services" onclick="toggleMenu()">Услуги</a>
+  <a href="#about" onclick="toggleMenu()">О клинике</a>
+  <a href="#why" onclick="toggleMenu()">Преимущества</a>
+  <a href="#reviews" onclick="toggleMenu()">Отзывы</a>
+  <a href="#appointment" onclick="toggleMenu()">Записаться</a>
+  <a href="#contacts" onclick="toggleMenu()">Контакты</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Стоматология нового поколения
+      </div>
+      <h1 class="hero-title">
+        Ваша идеальная улыбка &mdash; <span>наша гордость</span>
+      </h1>
+      <p class="hero-desc">
+        Современные технологии, опытные врачи и безболезненное лечение. Качественная стоматология без компромиссов.
+      </p>
+      <div class="hero-actions">
+        <a href="#appointment" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          Записаться на приём
+        </a>
+        <a href="#services" class="btn-outline">Наши услуги</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">ЛЕТ ОПЫТА</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5000+</div>
+          <div class="stat-label">ДОВОЛЬНЫХ ПАЦИЕНТОВ</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">ПРИЁМ ПАЦИЕНТОВ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <!-- Замените на реальное фото: <img src="/static/images/hero.jpg" alt="Smile Avenue"> -->
+      <div class="img-placeholder">Добавьте фото клиники<br>(static/images/hero.jpg)</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag">Услуги</div>
+  <h2 class="section-title">Наши <span>услуги и цены</span></h2>
+  <p class="section-desc">Полный спектр стоматологических услуг по доступным ценам. Принимаем 24/7.</p>
+
+  <div class="services-list">
+
+    <!-- 1. Виниры E-max -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Виниры E-max</div>
+          <div class="service-short">Твоя идеальная улыбка за 7 дней</div>
+          <div class="service-pricing">
+            <span class="price-old">$300</span>
+            <span class="price-new">от $200</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Виниры E-max &mdash; это ультратонкие керамические накладки премиального уровня, которые позволяют создать естественную, гармоничную и долговечную улыбку.</p>
+          <p>Материал отличается высокой прочностью, эстетикой и максимально точно повторяет структуру натурального зуба.</p>
+          <h4>Как проходит установка?</h4>
+          <ul>
+            <li>Первичная консультация</li>
+            <li>Выбор цвета и эстетических пожеланий пациента</li>
+            <li>Препарирование зубов и сбор необходимых слепков и сканов</li>
+            <li>Примерка и установка виниров</li>
+          </ul>
+          <h4>Что влияет на стоимость:</h4>
+          <ul>
+            <li>Исходное состояние зубов</li>
+            <li>Необходимость лечения перед установкой</li>
+            <li>Сложность эстетической работы</li>
+            <li>Индивидуальные пожелания по форме и цвету</li>
+          </ul>
+          <p>Точная стоимость определяется после диагностики.</p>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Отбеливание -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Профессиональное отбеливание</div>
+          <div class="service-short">Зубы белее на 4-5 тонов за один сеанс!</div>
+          <div class="service-pricing">
+            <span class="price-old">$180</span>
+            <span class="price-new">$100</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Процедура проводится с использованием современных безопасных систем отбеливания и занимает около одного часа.</p>
+          <p>Результат заметен сразу после процедуры.</p>
+          <h4>Важно знать:</h4>
+          <p>Финальный результат зависит от природного оттенка эмали и индивидуальных особенностей.</p>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Брекеты -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Брекет-система</div>
+          <div class="service-short">Ровные зубы уже на 3-м месяце!</div>
+          <div class="service-pricing">
+            <span class="price-old">$300</span>
+            <span class="price-new">от $250</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Ровные зубы &mdash; инвестиция в уверенность на годы вперёд. Современные брекет-системы позволяют заметно улучшить положение зубов уже в первые месяцы лечения.</p>
+          <p>Мы подбираем систему индивидуально, исходя из клинической картины и ваших эстетических предпочтений.</p>
+          <h4>Что может повлиять на стоимость:</h4>
+          <ul>
+            <li>Тип брекет-системы</li>
+            <li>Сложность коррекции</li>
+            <li>Длительность лечения</li>
+          </ul>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Имплантация -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Имплантация зубов</div>
+          <div class="service-short">Без боли и с пожизненной гарантией!</div>
+          <div class="service-pricing">
+            <span class="price-old">$300</span>
+            <span class="price-new">от $200</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Имплантация позволяет вернуть не только эстетику улыбки, но и полноценную жевательную функцию. Надёжное восстановление зубов с ощущением естественного комфорта.</p>
+          <p>Мы используем проверенные южнокорейские имплантационные системы и работаем по современным хирургическим протоколам.</p>
+          <p>Полная стоимость зависит от объёма лечения и необходимости дополнительных процедур.</p>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Гигиена -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">3-этапная профессиональная гигиена</div>
+          <div class="service-short">Избавляем от налёта и камней всего за 48 минут!</div>
+          <div class="service-pricing">
+            <span class="price-only">$50</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Комплексное очищение зубов всего за один визит. Процедура помогает удалить налёт и зубной камень, освежает дыхание и снижает риск развития кариеса и заболеваний дёсен.</p>
+          <p>Длительность процедуры &mdash; около 45-60 минут. Рекомендуется проходить каждые 6 месяцев.</p>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Циркониевая коронка -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Циркониевая коронка с керамическим нанесением</div>
+          <div class="service-short">Эстетика и прочность в одном решении</div>
+          <div class="service-pricing">
+            <span class="price-only">$150</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Циркониевые коронки известны своей надёжностью и естественным внешним видом. Идеально подходят как для жевательной группы зубов, так и для зоны улыбки.</p>
+          <h4>Как проходит установка?</h4>
+          <ul>
+            <li>Первичная консультация</li>
+            <li>Лечение и подготовка зуба к обточке</li>
+            <li>Обточка и сбор необходимых слепков и сканов</li>
+            <li>Примерка и установка вашей новой улыбки</li>
+          </ul>
+          <p>Точная стоимость может зависеть от клинической ситуации.</p>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Лечение кариеса -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Лечение кариеса</div>
+          <div class="service-short">Своевременное лечение &mdash; залог здоровья зубов</div>
+          <div class="service-pricing">
+            <span class="price-only">от $30</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Мы применяем современные пломбировочные материалы, обеспечивающие долговечность и эстетичный результат.</p>
+          <p>Финальная цена зависит от глубины поражения и от того, какой это зуб.</p>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Удаление зубов -->
+    <div class="service-card">
+      <div class="service-header">
+        <div class="service-info">
+          <div class="service-name">Удаление зубов</div>
+          <div class="service-short">Удаление без боли!</div>
+          <div class="service-pricing">
+            <span class="price-only">от $30</span>
+          </div>
+        </div>
+        <div class="service-actions">
+          <button class="btn-details" onclick="toggleDetails(this)">Подробнее</button>
+          <a href="#appointment" class="btn-primary btn-sm">Записаться</a>
+        </div>
+      </div>
+      <div class="service-details">
+        <div class="service-details-inner">
+          <p>Удаление зуба &mdash; довольно часто простая, но очень деликатная процедура. Мы отлично об этом знаем &mdash; и побеспокоились, чтобы удаление зуба было максимально безболезненным для вас.</p>
+          <h4>Как проходит процедура:</h4>
+          <ul>
+            <li>Первичная консультация бесплатно*</li>
+            <li>Анестезия и обезболивание</li>
+            <li>Рентгенодиагностика</li>
+            <li>Удаление зуба</li>
+            <li>Наложение швов (по необходимости)</li>
+            <li>Выдача рекомендаций</li>
+            <li>Осмотр после удаления</li>
+          </ul>
+          <h4>Стоимость:</h4>
+          <ul>
+            <li>Удаление постоянного зуба &mdash; $30</li>
+            <li>Сложное удаление с разъединением корней &mdash; $50</li>
+            <li>Удаление зуба мудрости (верхнего) &mdash; $40</li>
+            <li>Удаление зуба мудрости (нижнего) &mdash; $50</li>
+            <li>Удаление ретенированного (не вышедшего) зуба &mdash; $60</li>
+          </ul>
+          <div class="details-cta">
+            <a href="#appointment" class="btn-primary btn-sm">Записаться на приём</a>
+            <span class="details-cta-text">Принимаем 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-tag">О клинике</div>
+  <h2 class="section-title">Стоматология <span>Smile Avenue</span></h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Красивая и здоровая улыбка &mdash; это не просто элемент внешности, а важная часть уверенности человека и его повседневного комфорта. Однако идеальное состояние зубов не всегда зависит только от природных качеств. К счастью, достижения современной стоматологии позволяют восстановить здоровье полости рта и создать голливудскую улыбку практически в любом возрасте.</p>
+      <p>Smile Avenue &mdash; это стоматологическое пространство нового поколения, где сочетаются высокий профессионализм врачей, технологичная лаборатория и внимательное отношение к каждому пациенту.</p>
+      <p>Многие откладывают визит к стоматологу из-за тревоги или прошлого неудачного опыта. В Smile Avenue мы меняем это представление: создаём спокойную, комфортную атмосферу и сопровождаем пациента на каждом этапе &mdash; от консультации до завершения лечения.</p>
+
+      <ul class="about-services-list">
+        <li>Эстетическая реставрация и установка виниров</li>
+        <li>Протезирование и коронки</li>
+        <li>Имплантация</li>
+        <li>Ортодонтическое лечение</li>
+        <li>Профессиональное отбеливание</li>
+        <li>Терапевтическое лечение зубов и дёсен</li>
+        <li>Удаление зубов и профессиональная гигиена</li>
+      </ul>
+
+      <p>Smile Avenue &mdash; это место, где создают улыбки, которыми хочется гордиться.</p>
+
+      <a href="#appointment" class="btn-primary" style="margin-top: 1.5rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Записаться на приём
+      </a>
+    </div>
+
+    <div class="about-image">
+      <!-- Замените на реальное фото: <img src="/static/images/clinic.jpg" alt="Клиника Smile Avenue"> -->
+      <div class="img-placeholder">Добавьте фото клиники<br>(static/images/clinic.jpg)</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-grid">
+    <div>
+      <div class="section-tag">Преимущества</div>
+      <h2 class="section-title">Почему <span>Smile Avenue?</span></h2>
+      <p class="section-desc">Мы не просто лечим зубы &mdash; мы создаём атмосферу доверия и безопасности.</p>
+      <div class="why-features">
+        <div class="why-item">
+          <div class="why-icon">&#127942;</div>
+          <div class="why-text">
+            <h4>Сертифицированные врачи</h4>
+            <p>Все специалисты имеют международные сертификаты и регулярно проходят обучение</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128300;</div>
+          <div class="why-text">
+            <h4>Современное оборудование</h4>
+            <p>3D-сканирование, цифровой рентген и лазерные технологии для точной диагностики</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128138;</div>
+          <div class="why-text">
+            <h4>Безболезненное лечение</h4>
+            <p>Современная анестезия и седация &mdash; абсолютный комфорт во время процедуры</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">&#128203;</div>
+          <div class="why-text">
+            <h4>Прозрачные цены</h4>
+            <p>Никаких скрытых платежей &mdash; полная стоимость известна до начала лечения</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-visual">
+      <div class="why-card-big">
+        <div class="big-num">98%</div>
+        <p>Уровень удовлетворённости пациентов</p>
+      </div>
+      <div class="mini-cards">
+        <div class="mini-card">
+          <div class="mn">10+</div>
+          <div class="ml">Лет опыта</div>
+        </div>
+        <div class="mini-card">
+          <div class="mn">5K+</div>
+          <div class="ml">Пациентов</div>
+        </div>
+        <div class="mini-card">
+          <div class="mn">15+</div>
+          <div class="ml">Специалистов</div>
+        </div>
+        <div class="mini-card">
+          <div class="mn">24/7</div>
+          <div class="ml">Приём пациентов</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <div class="section-tag">Отзывы</div>
+  <h2 class="section-title">Что говорят <span>наши пациенты?</span></h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+      <p class="testimonial-text">"Ставил импланты &mdash; врачи настоящие профессионалы. Боли вообще не почувствовал. Результатом очень доволен!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">А</div>
+        <div>
+          <div class="author-name">Азиз Каримов</div>
+          <div class="author-date">Февраль 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+      <p class="testimonial-text">"Поставила виниры &mdash; результат потрясающий! Улыбка кардинально изменилась. Всё объяснили, цена справедливая."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">Н</div>
+        <div>
+          <div class="author-name">Нилуфар Юсупова</div>
+          <div class="author-date">Январь 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars"><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span><span class="star">&#9733;</span></div>
+      <p class="testimonial-text">"Ребёнку ставили брекеты. Врачи отнеслись с большим вниманием, ребёнок не боялся. Результат отличный!"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">С</div>
+        <div>
+          <div class="author-name">Сарвар Тошматов</div>
+          <div class="author-date">Декабрь 2025</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2 class="cta-title">Готовы к <span>идеальной улыбке?</span></h2>
+    <p class="cta-desc">Запишитесь на бесплатную консультацию прямо сейчас. Принимаем 24/7.</p>
+    <div class="cta-buttons">
+      <a href="#appointment" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        Записаться на приём
+      </a>
+      <a href="tel:+998901234567" class="btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Позвонить
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- APPOINTMENT FORM -->
+<section class="form-section" id="appointment">
+  <div class="form-wrap">
+    <div class="form-info">
+      <div class="section-tag">Запись на приём</div>
+      <h2 class="section-title">Запишитесь на <span>бесплатную консультацию</span></h2>
+      <p class="section-desc">Заполните форму &mdash; администратор свяжется с вами в течение 30 минут и подберёт удобное время.</p>
+      <div class="form-benefits">
+        <div class="form-benefit"><div class="form-benefit-dot"></div> Бесплатный первичный осмотр</div>
+        <div class="form-benefit"><div class="form-benefit-dot"></div> Обратная связь за 30 минут</div>
+        <div class="form-benefit"><div class="form-benefit-dot"></div> Вы выбираете удобное время</div>
+        <div class="form-benefit"><div class="form-benefit-dot"></div> Никаких обязательств</div>
+      </div>
+    </div>
+
+    <div class="appointment-form" id="formBox">
+      <div class="form-title">Запись на приём</div>
+      <div class="form-subtitle">Заполните все поля</div>
+
+      <form id="appointmentForm" onsubmit="submitForm(event)">
+        <div class="form-group">
+          <label class="form-label" for="phone">НОМЕР ТЕЛЕФОНА</label>
+          <input
+            class="form-input"
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+998 __ ___ __ __"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="name">ИМЯ И ФАМИЛИЯ</label>
+          <input
+            class="form-input"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Введите ваше имя"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="procedure">ПРОЦЕДУРА</label>
+          <select class="form-select" id="procedure" name="procedure" required>
+            <option value="" disabled selected>Выберите процедуру</option>
+            <option value="consultation">Бесплатная консультация</option>
+            <option value="veneers">Виниры E-max</option>
+            <option value="whitening">Отбеливание</option>
+            <option value="braces">Брекет-система</option>
+            <option value="implant">Имплантация</option>
+            <option value="hygiene">Профессиональная гигиена</option>
+            <option value="crown">Циркониевая коронка</option>
+            <option value="treatment">Лечение кариеса</option>
+            <option value="extraction">Удаление зуба</option>
+            <option value="other">Другое</option>
+          </select>
+        </div>
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+
+        <button type="submit" class="form-submit" id="submitBtn">
+          Записаться на приём
+        </button>
+        <p class="form-note">Ваши данные надёжно защищены</p>
+        <p class="form-error" id="formError" style="display:none;color:#e05555;font-size:0.78rem;text-align:center;margin-top:0.6rem;"></p>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="check">&#10004;&#65039;</div>
+        <h3>Ваша заявка принята!</h3>
+        <p>Администратор свяжется с вами в ближайшее время.<br/>Спасибо, что выбрали Smile Avenue!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+<section class="contacts" id="contacts">
+  <div class="section-tag">Контакты</div>
+  <h2 class="section-title">Свяжитесь <span>с нами</span></h2>
+
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <div class="contact-icon">&#128205;</div>
+      <div>
+        <div class="contact-label">АДРЕС</div>
+        <div class="contact-val">Ташкент, Чиланзарский район,<br/>ул. Бунёдкор 12А</div>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">&#128222;</div>
+      <div>
+        <div class="contact-label">ТЕЛЕФОН</div>
+        <a href="tel:+998901234567" class="contact-val">+998 90 123 45 67</a>
+      </div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">&#128336;</div>
+      <div>
+        <div class="contact-label">ГРАФИК РАБОТЫ</div>
+        <div class="contact-val">Принимаем 24/7</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">SMILE AVENUE</div>
+    <div class="footer-links">
+      <a href="#services">Услуги</a>
+      <a href="#about">О клинике</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#appointment">Запись</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+    <div class="footer-socials">
+      <a href="https://t.me/smileavenue" target="_blank" class="social-btn" title="Telegram">
+        <svg viewBox="0 0 24 24" fill="#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/smile_avenue_uz/?hl=ru" target="_blank" class="social-btn" title="Instagram">
+        <svg viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 Smile Avenue Dental Clinic. Все права защищены.</div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-cta">
+  <a href="https://www.instagram.com/smile_avenue_uz/?hl=ru" target="_blank" class="float-btn float-ig" title="Instagram">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+  </a>
+  <a href="https://t.me/smileavenue" target="_blank" class="float-btn float-tg" title="Telegram">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+  </a>
+</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+
+  function toggleDetails(btn) {
+    const card = btn.closest('.service-card');
+    const details = card.querySelector('.service-details');
+    details.classList.toggle('open');
+    btn.textContent = details.classList.contains('open') ? 'Скрыть' : 'Подробнее';
+  }
+
+  // Phone mask
+  document.getElementById('phone').addEventListener('input', function(e) {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.startsWith('998')) v = '+' + v;
+    else if (v.startsWith('9') && !v.startsWith('998')) v = '+998' + v;
+    else if (!v.startsWith('+')) v = '+998' + v;
+    e.target.value = v.slice(0, 13);
+  });
+
+  async function submitForm(e) {
+    e.preventDefault();
+    const form    = document.getElementById('appointmentForm');
+    const success = document.getElementById('successMsg');
+    const errEl   = document.getElementById('formError');
+    const btn     = document.getElementById('submitBtn');
+
+    btn.disabled = true;
+    btn.textContent = 'Отправка...';
+    errEl.style.display = 'none';
+
+    try {
+      const res  = await fetch('/submit', { method: 'POST', body: new FormData(form) });
+      const data = await res.json();
+
+      if (!res.ok) {
+        errEl.textContent = data.detail || 'Произошла ошибка. Попробуйте ещё раз.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Записаться на приём';
+        return;
+      }
+
+      form.style.transition = 'opacity 0.3s';
+      form.style.opacity = '0';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.style.display = 'block';
+        success.style.opacity = '0';
+        success.style.transition = 'opacity 0.4s';
+        requestAnimationFrame(() => { success.style.opacity = '1'; });
+      }, 300);
+
+    } catch (_) {
+      errEl.textContent = 'Ошибка сети. Проверьте интернет-соединение.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Записаться на приём';
+    }
+  }
+
+  // Header shadow on scroll
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    header.style.boxShadow = window.scrollY > 50 ? '0 4px 30px rgba(0,0,0,0.5)' : 'none';
+  });
+
+  // Close mobile nav on outside click
+  document.addEventListener('click', (e) => {
+    const nav = document.getElementById('mobileNav');
+    const burger = document.querySelector('.burger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) {
+      nav.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>
