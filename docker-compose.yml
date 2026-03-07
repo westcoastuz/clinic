@@ -1,0 +1,19 @@
+services:
+  clinic:
+    build: .
+    container_name: clinic-app
+    command: uvicorn main:app --host 0.0.0.0 --port 8888 --reload
+    env_file:
+      - .env
+    ports:
+      - "8888:8888"
+    environment:
+      DB_PATH: /data/appointments.db
+      WATCHFILES_FORCE_POLLING: "true"
+    volumes:
+      - ./:/app
+      - clinic_data:/data
+    restart: unless-stopped
+
+volumes:
+  clinic_data:

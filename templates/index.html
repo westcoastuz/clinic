@@ -371,12 +371,14 @@
       gap: var(--services-gap);
       align-items: flex-start;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
+      scroll-snap-type: x proximity;
       scroll-behavior: smooth;
       scrollbar-width: none;
       -ms-overflow-style: none;
       padding-bottom: 0.2rem;
       touch-action: pan-x;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-x: contain;
     }
     .services-list::-webkit-scrollbar { display: none; }
 
@@ -393,6 +395,47 @@
       scroll-snap-align: start;
     }
     .service-card:hover { border-color: rgba(201,148,26,0.3); }
+
+    .service-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--dark3);
+      border-bottom: 1px solid rgba(201,148,26,0.12);
+    }
+    .service-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .service-media-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.5;
+      background: linear-gradient(135deg, var(--dark2), var(--dark3));
+    }
+    .service-media-title {
+      position: absolute;
+      left: 0.75rem;
+      bottom: 0.75rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(10,10,10,0.72);
+      border: 1px solid rgba(201,148,26,0.35);
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
 
     .services-controls {
       display: flex;
@@ -1195,9 +1238,9 @@
     <a href="#reviews">Отзывы</a>
     <a href="#contacts">Контакты</a>
   </nav>
-  <a href="tel:+998901234567" class="header-phone">
+  <a href="tel:+998908226655" class="header-phone">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-    +998 90 123 45 67
+    +998 90 822 66 55
   </a>
   <button class="burger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -1273,6 +1316,10 @@
 
     <!-- 1. Виниры E-max -->
     <div class="service-card">
+      <div class="service-media">
+        <img src="/static/images/services/veneers.jpg" alt="Виниры E-max" loading="lazy" />
+        <span class="service-media-title">Виниры E-max</span>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Виниры E-max</div>
@@ -1316,6 +1363,10 @@
 
     <!-- 2. Отбеливание -->
     <div class="service-card">
+      <div class="service-media">
+        <img src="/static/images/services/whitening.jpg" alt="Профессиональное отбеливание" loading="lazy" />
+        <span class="service-media-title">Отбеливание</span>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Профессиональное отбеливание</div>
@@ -1346,6 +1397,10 @@
 
     <!-- 3. Брекеты -->
     <div class="service-card">
+      <div class="service-media">
+        <img src="/static/images/services/braces.jpg" alt="Брекет-система" loading="lazy" />
+        <span class="service-media-title">Брекеты</span>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Брекет-система</div>
@@ -1380,6 +1435,9 @@
 
     <!-- 4. Имплантация -->
     <div class="service-card">
+      <div class="service-media">
+        <div class="service-media-placeholder">Фото не загружено<br>(Имплантация)</div>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Имплантация зубов</div>
@@ -1409,6 +1467,9 @@
 
     <!-- 5. Гигиена -->
     <div class="service-card">
+      <div class="service-media">
+        <div class="service-media-placeholder">Фото не загружено<br>(Гигиена)</div>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">3-этапная профессиональная гигиена</div>
@@ -1436,6 +1497,10 @@
 
     <!-- 6. Циркониевая коронка -->
     <div class="service-card">
+      <div class="service-media">
+        <img src="/static/images/services/crowns.jpg" alt="Циркониевая коронка" loading="lazy" />
+        <span class="service-media-title">Коронки</span>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Циркониевая коронка с керамическим нанесением</div>
@@ -1470,6 +1535,10 @@
 
     <!-- 7. Лечение кариеса -->
     <div class="service-card">
+      <div class="service-media">
+        <img src="/static/images/services/caries.jpg" alt="Лечение кариеса" loading="lazy" />
+        <span class="service-media-title">Лечение кариеса</span>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Лечение кариеса</div>
@@ -1497,6 +1566,9 @@
 
     <!-- 8. Удаление зубов -->
     <div class="service-card">
+      <div class="service-media">
+        <div class="service-media-placeholder">Фото не загружено<br>(Удаление зубов)</div>
+      </div>
       <div class="service-header">
         <div class="service-info">
           <div class="service-name">Удаление зубов</div>
@@ -1703,7 +1775,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
         Записаться на приём
       </a>
-      <a href="tel:+998901234567" class="btn-outline">
+      <a href="tel:+998908226655" class="btn-outline">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
         Позвонить
       </a>
@@ -1759,16 +1831,16 @@
           <label class="form-label" for="procedure">ПРОЦЕДУРА</label>
           <select class="form-select" id="procedure" name="procedure" required>
             <option value="" disabled selected>Выберите процедуру</option>
-            <option value="consultation">Бесплатная консультация</option>
-            <option value="veneers">Виниры E-max</option>
-            <option value="whitening">Отбеливание</option>
-            <option value="braces">Брекет-система</option>
-            <option value="implant">Имплантация</option>
-            <option value="hygiene">Профессиональная гигиена</option>
-            <option value="crown">Циркониевая коронка</option>
-            <option value="treatment">Лечение кариеса</option>
-            <option value="extraction">Удаление зуба</option>
-            <option value="other">Другое</option>
+            <option value="Бесплатная консультация">Бесплатная консультация</option>
+            <option value="Виниры E-max">Виниры E-max</option>
+            <option value="Отбеливание">Отбеливание</option>
+            <option value="Брекет-система">Брекет-система</option>
+            <option value="Имплантация">Имплантация</option>
+            <option value="Профессиональная гигиена">Профессиональная гигиена</option>
+            <option value="Циркониевая коронка">Циркониевая коронка</option>
+            <option value="Лечение кариеса">Лечение кариеса</option>
+            <option value="Удаление зуба">Удаление зуба</option>
+            <option value="Другое">Другое</option>
           </select>
         </div>
 
@@ -1800,14 +1872,15 @@
       <div class="contact-icon">&#128205;</div>
       <div>
         <div class="contact-label">АДРЕС</div>
-        <div class="contact-val">Ташкент, Чиланзарский район,<br/>ул. Бунёдкор 12А</div>
+        <div class="contact-val">Пахлавона Махмуда 23</div>
       </div>
     </div>
     <div class="contact-card">
       <div class="contact-icon">&#128222;</div>
       <div>
         <div class="contact-label">ТЕЛЕФОН</div>
-        <a href="tel:+998901234567" class="contact-val">+998 90 123 45 67</a>
+        <a href="tel:+998908226655" class="contact-val">+998 90 822 66 55</a><br/>
+        <a href="tel:+998909329111" class="contact-val">+998 90 932 91 11</a>
       </div>
     </div>
     <div class="contact-card">
@@ -1882,6 +1955,10 @@
     autoTimer: null
   };
 
+  function isTouchSlider() {
+    return window.matchMedia('(pointer: coarse)').matches;
+  }
+
   function getServicesStep() {
     if (!servicesList) return 0;
     const card = servicesList.querySelector('.service-card:not(.is-clone)') || servicesList.querySelector('.service-card');
@@ -1910,6 +1987,15 @@
     const originals = Array.from(servicesList.querySelectorAll('.service-card:not(.is-clone)'));
     const originalsCount = originals.length;
     if (!originalsCount) return;
+    servicesState.originalsCount = originalsCount;
+
+    if (isTouchSlider()) {
+      servicesState.cloneCount = 0;
+      servicesList.style.scrollBehavior = 'auto';
+      servicesList.scrollLeft = 0;
+      servicesList.style.scrollBehavior = '';
+      return;
+    }
 
     const cloneCount = Math.min(getServicesVisibleCount(), originalsCount);
     const headClones = originals.slice(0, cloneCount).map(createServiceClone);
@@ -1931,6 +2017,7 @@
 
   function normalizeServicesLoop() {
     if (!servicesList) return;
+    if (isTouchSlider()) return;
     const step = getServicesStep();
     if (!step || !servicesState.cloneCount || !servicesState.originalsCount) return;
 
@@ -1962,7 +2049,7 @@
   }
 
   function startAutoServicesSlide() {
-    if (!servicesList || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!servicesList || isTouchSlider() || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     stopAutoServicesSlide();
     servicesState.autoTimer = setInterval(() => slideServices(1), 3500);
   }
