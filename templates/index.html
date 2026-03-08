@@ -611,7 +611,7 @@
 
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 4rem;
       align-items: start;
     }
@@ -1299,8 +1299,7 @@
     </div>
 
     <div class="hero-image">
-      <!-- Замените на реальное фото: <img src="/static/images/hero.jpg" alt="Smile Avenue"> -->
-      <div class="img-placeholder">Добавьте фото клиники<br>(static/images/hero.jpg)</div>
+      <img src="/static/images/hero.jpg" alt="Smile Avenue" loading="eager" />
     </div>
   </div>
 </section>
@@ -1468,7 +1467,8 @@
     <!-- 5. Гигиена -->
     <div class="service-card">
       <div class="service-media">
-        <div class="service-media-placeholder">Фото не загружено<br>(Гигиена)</div>
+        <img src="/static/images/services/hygiene.jpg" alt="Профессиональная гигиена" loading="lazy" />
+        <span class="service-media-title">Гигиена</span>
       </div>
       <div class="service-header">
         <div class="service-info">
@@ -1567,7 +1567,8 @@
     <!-- 8. Удаление зубов -->
     <div class="service-card">
       <div class="service-media">
-        <div class="service-media-placeholder">Фото не загружено<br>(Удаление зубов)</div>
+        <img src="/static/images/services/extraction.jpg" alt="Удаление зубов" loading="lazy" />
+        <span class="service-media-title">Удаление зубов</span>
       </div>
       <div class="service-header">
         <div class="service-info">
@@ -1648,10 +1649,6 @@
       </a>
     </div>
 
-    <div class="about-image">
-      <!-- Замените на реальное фото: <img src="/static/images/clinic.jpg" alt="Клиника Smile Avenue"> -->
-      <div class="img-placeholder">Добавьте фото клиники<br>(static/images/clinic.jpg)</div>
-    </div>
   </div>
 </section>
 
