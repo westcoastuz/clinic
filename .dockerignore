@@ -5,3 +5,6 @@ __pycache__/
 .git/
 venv/
 appointments.db
+node_modules/
+.next/
+data/appointments.json

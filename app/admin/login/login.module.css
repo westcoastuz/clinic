@@ -1,0 +1,90 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #0a0a0a;
+  color: #f5f0e8;
+  font-family: Inter, sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid rgba(201, 148, 26, 0.24);
+  border-radius: 14px;
+  padding: 24px;
+  background: #161616;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-family: "Playfair Display", serif;
+  color: #e8b44a;
+}
+
+.subtitle {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #b4ab9b;
+}
+
+.error {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(224, 85, 85, 0.5);
+  background: rgba(224, 85, 85, 0.12);
+  color: #ffb3b3;
+  font-size: 13px;
+}
+
+.form {
+  margin-top: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: #d2cabd;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.input {
+  border: 1px solid rgba(201, 148, 26, 0.22);
+  border-radius: 10px;
+  background: #0f0f0f;
+  color: #f5f0e8;
+  padding: 11px 12px;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #c9941a;
+}
+
+.button {
+  margin-top: 6px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  background: linear-gradient(135deg, #c9941a, #a07514);
+  color: #000;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 12px;
+  color: #c9941a;
+  font-size: 13px;
+  text-decoration: none;
+}

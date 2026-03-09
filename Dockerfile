@@ -1,17 +1,12 @@
-FROM python:3.11-slim
-
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY package*.json ./
+RUN npm install
 
-COPY main.py ./main.py
-COPY templates ./templates
-COPY static ./static
+COPY . .
 
 EXPOSE 8888
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8888"]
+CMD ["npm", "run", "dev", "--", "-H", "0.0.0.0", "-p", "8888"]

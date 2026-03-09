@@ -1,0 +1,19 @@
+{
+  "name": "clinic-next",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "browserslist": "^4.28.1",
+    "caniuse-lite": "^1.0.30001777",
+    "next": "^15.2.0",
+    "pg": "^8.16.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}
