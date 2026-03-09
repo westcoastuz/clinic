@@ -32,20 +32,15 @@ Use `.env` (see `.env.example`):
 - `ADMIN_PASSWORD`
 - `SESSION_SECRET`
 
-For persistent storage on Vercel, add Vercel Postgres env vars:
-- `POSTGRES_URL`
-
 ## 3) Deploy to Vercel (Free)
 
 1. Push repository to GitHub.
 2. In Vercel: **Add New Project** -> import this repo.
-3. In Vercel dashboard add a **Postgres** database (Storage tab).
-4. Vercel will inject Postgres env vars automatically.
-5. Add admin env vars in Project Settings -> Environment Variables:
+3. Add admin env vars in Project Settings -> Environment Variables:
    - `ADMIN_USERNAME`
    - `ADMIN_PASSWORD`
    - `SESSION_SECRET`
-6. Deploy.
+4. Deploy.
 
 After deployment:
 - website: `/`
@@ -53,5 +48,8 @@ After deployment:
 
 ## Notes
 
-- On local machine without Postgres, data is saved to `data/appointments.json`.
-- On Vercel, you should use Postgres for persistent data.
+- Form data is saved in a JSON file on the server:
+  - local: `data/appointments.json`
+  - Vercel: `/tmp/appointments.json`
+- This file is not in `public/`, so it is not accessible via a direct URL.
+- Vercel `/tmp` is ephemeral (can reset between deployments/restarts). For long-term persistence, use an external database later.
