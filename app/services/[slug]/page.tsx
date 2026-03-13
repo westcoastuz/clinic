@@ -16,9 +16,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+  const description = `${service.name} в клинике Smile Avenue, Ташкент. ${service.shortDesc}. ${service.details.paragraphs[0] || ""} Запишитесь на консультацию: +998 90 822 66 55`.slice(0, 160);
   return {
-    title: `${service.name} — Smile Avenue`,
-    description: service.shortDesc,
+    title: `${service.name} в Ташкенте`,
+    description,
+    openGraph: {
+      title: `${service.name} — Smile Avenue, Ташкент`,
+      description,
+      images: [{ url: service.image, alt: service.name }],
+    },
   };
 }
 
