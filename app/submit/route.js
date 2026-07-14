@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { normalizeProcedureName } from "@/lib/procedures";
-import { createAppointment } from "@/lib/storage";
+import { sendAppointmentToTelegram } from "@/lib/telegram";
 
 export const runtime = "nodejs";
 
@@ -27,7 +27,7 @@ export async function POST(request) {
       );
     }
 
-    await createAppointment({ phone, name, procedure });
+    await sendAppointmentToTelegram({ phone, name, procedure });
 
     return NextResponse.json({
       success: true,
